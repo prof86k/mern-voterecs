@@ -23,7 +23,7 @@ const UserSchema = new mongoose.Schema({
         default: 'polling agent',
         enum: ['admin', 'regional coordinator', 'constituency coordinator', 'polling agent']
     },
-    hashed_password: {
+    password: {
         type: String,
         required: 'Password Required'
     },
@@ -40,7 +40,7 @@ export default mongoose.model('User', UserSchema);
 // .get(function(){
 // return this._password;
 // });
-// 
+//
 // UserSchema.methods = {
 // authenticate(plaintext){
 // return this.encryptPassword(plaintext) === this.hashed_password;
@@ -60,7 +60,7 @@ export default mongoose.model('User', UserSchema);
 // return Math.round((new Date().valueOf() * Math.random()));
 // }
 // };
-// 
+//
 // UserSchema.path('hashed_password').validate(function(v){
 // if(this._password && this._password.length < 6){
 // this.invalidate('password','Password must be at least 6 characters')

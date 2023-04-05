@@ -4,43 +4,20 @@ import bcrypt from 'bcrypt'
 
 export const createUser = async (req, res) => {
     // create new user 
-    const { email, hashed_password } = new userModel(req.body);
-
-    const emailExist = new Promise((resolve, reject) => {
-        userModel.findOne({ email }, function (err, email) {
-            if (err) reject(new Error(err));
-            if (email) reject({ "error": 'Email already exist!' });
-            resolve();
-        })
-    });
-
-    const passwordLong = new Promise((resolve, reject) => {
-        if (hashed_password.length < 6) reject({ 'Error': "password must be more than 5 characters" });
-        resolve();
-    });
-
-    Promise.all([emailExist, passwordLong])
-        .then(() => {
-            if (hashed_password) {
-                bcrypt.hash(hashed_password, 10)
-                    .then(hashedPassword => {
-                        const user = new userModel(req.body);
-                        user.hashed_password = hashedPassword;
-                        // save and return user
-                        user.save()
-                            .then(results => res.status(201).json({ 'message': 'Sign up successful' }))
-                            .catch(error => res.status(500).json({ error: 'unable to save user' }))
-                    });
-            } else {
-                return res.status(402).json({ error: 'No Password Entered!.' })
-            }
-        }).catch(err => {
-            return res.status(500).send({
-                err: "Unable to hash password"
-            })
-        })
-
-
+    const { password } = req.body;
+    if (password) {
+        bcrypt.hash(password, 10)
+            .then(hashedPassword => {
+                const user = new userModel(req.body);
+                user.password = hashedPassword;
+                // save and return user
+                user.save()
+                    .then(results => res.status(201).json({ 'message': 'Sign up successful ' }))
+                    .catch(error => res.status(500).json({ error: 'unable to save user' + error }))
+            });
+    } else {
+        return res.status(402).json({ error: 'No Password Entered!.' })
+    }
 
 }
 
