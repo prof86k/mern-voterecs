@@ -4,7 +4,8 @@ import bcrypt from 'bcrypt'
 
 export const createUser = async (req, res) => {
     // create new user 
-    const { password } = req.body;
+    const { email, password } = req.body;
+    if (userModel.findOne({ email })) return res.status(401).json({ 'message': 'User Already Exists!.' })
     if (password) {
         bcrypt.hash(password, 10)
             .then(hashedPassword => {
