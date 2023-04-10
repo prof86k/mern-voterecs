@@ -4,11 +4,11 @@ const webpack = require('webpack')
 
 module.exports = {
     entry: './client/src/index.js',
-    name:'browser',
-    mode:'development',
-    devtool:'cheap-module-source-map',
+    name: 'browser',
+    mode: 'development',
+    devtool: 'cheap-module-source-map',
     output: {
-        path : path.join(__dirname, '/dist'),
+        path: path.join(__dirname, '/dist'),
         filename: 'bundle.js',
         publicPath: '/dist/'
     },
@@ -27,5 +27,5 @@ module.exports = {
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ]
-    
+
 }

@@ -25,6 +25,8 @@ app.use(cors());
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
+app.use(morgan('tiny'));
+
 if (process.env.NODE_ENV == 'development') {
     devBundle.compile(app);
 }
