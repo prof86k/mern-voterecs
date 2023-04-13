@@ -5,14 +5,15 @@ import Login from '../components/Login';
 import Profile from '../components/Profile';
 import PageNotFoundError from '../components/PageNotFoundError';
 import Reset from '../components/Reset';
+import Home from '../components/Home';
 
 /** Create routes**/
 const router = createBrowserRouter([
     {
         path: '/',
-        element: (<div> This Home
-            <Link to="register">Register</Link>
-        </div>)
+        element: <Home />
+
+
     },
     {
         path: 'register',

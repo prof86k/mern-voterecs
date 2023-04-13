@@ -10,9 +10,6 @@ const App = () => {
         <main>
             <ThemeProvider theme={theme}>
                 <RouterProvider router={router} />
-                <h1 className="text-3xl font-bold underline">
-                Tailwind css working
-                </h1>
             </ThemeProvider>
         </main>
     );

@@ -15,11 +15,11 @@ const theme = createTheme({
             '"Segoe UI Emoji"',
             '"Segoe UI Symbol"',
         ].join(','),
-        fontSize: [
-            500, 700
-        ]
     },
     palette: {
+        openTitle: '#3f4771',
+        protectedTitle: pink['400'],
+        type: 'light',
         primary: {
             light: '#42a5f5',
             main: '#1976d2',
